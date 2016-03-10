@@ -5,11 +5,6 @@ app.controller('main', ['$scope','$anchorScroll','$location','$window', function
         return location + item + '.html';
     };
 
-    $scope.init = function() {
-        //console.log($location);
-    };
-    //$scope.init();
-
     $scope.gotoAnchor = function(x) {
       var newHash = x;
       if ($location.hash() !== newHash) {

@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module("app", ['ngRoute'])
+var app = angular.module("app", ['ngRoute', 'ngCookies'])
 .config(['$routeProvider','$locationProvider', function($routeProvider, $locationProvider) {
 	$routeProvider
 		.when('/', {
@@ -25,4 +25,16 @@ var app = angular.module("app", ['ngRoute'])
 }])
 .run(['$anchorScroll', function($anchorScroll) {
   $anchorScroll.yOffset = 75;   // always scroll by 50 extra pixels
-}]);
+}])
+.factory('db', function($http) {
+   return {
+        getFoos: function() {
+             //return the promise directly.
+             return $http.get('resources/ajax/getUsers.php')
+                       .then(function(result) {
+                            //resolve the promise as the data
+                            return result.data;
+                        });
+        }
+   }
+});
